@@ -870,10 +870,11 @@ RCT_EXPORT_METHOD(stopNotification:(NSString *)deviceUUID serviceUUID:(NSString*
     return [NSString stringWithFormat:@"%@|%@", [peripheral uuidAsString], [characteristic UUID]];
 }
 
--(void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *,id> *)dict
-{
-    NSLog(@"centralManager willRestoreState");
-}
+// methos is commented out to avoid this warning: [CoreBluetooth] API MISUSE: <CBCentralManager: 0x17446ba80> has no restore identifier but the delegate implements the centralManager:willRestoreState: method. Restoring will not be supported
+// -(void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *,id> *)dict
+// {
+//     NSLog(@"centralManager willRestoreState");
+// }
 
 +(CBCentralManager *)getCentralManager
 {
@@ -885,4 +886,8 @@ RCT_EXPORT_METHOD(stopNotification:(NSString *)deviceUUID serviceUUID:(NSString*
   return _instance;
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
 @end
